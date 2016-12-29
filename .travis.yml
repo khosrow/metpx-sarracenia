@@ -1,0 +1,22 @@
+dist: trusty
+sudo: required
+language: python
+services:
+    - rabbitmq
+python:
+    - "3.3"
+    - "3.4"
+    - "3.5"
+before_install:	
+    - sh ./vagrant/provision/scripts/install-deps.sh trusty
+    - sh ./vagrant/provision/scripts/setup-user.sh
+    - sh ./vagrant/provision/scripts/config-rabbitmq.sh
+    - cp ./test/sender/plugins/on_msg_script.py ~/.config/sarra/plugins
+    - cp ./test/sender/plugins/do_send_script.py ~/.config/sarra/plugins
+    - cp ./test/sender/plugins/on_post_script.py ~/.config/sarra/plugins
+install: 
+    - pip3 install paramiko
+    - python3 setup.py install
+before_script: 
+    - sed -i -e "s/vagrant/travis/g" test/sender/*.conf
+script: pushd test && ./test_sr_sender.sh
