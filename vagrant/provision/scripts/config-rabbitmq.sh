@@ -29,10 +29,10 @@ EOF
 cat << EOF > ~/.config/sarra/default.conf
 admin amqp://bunnymaster@localhost/
 feeder amqp://tfeed@localhost/
-role source tsource
-role source tsender_src
-role source tsender_dest
-role subscribe tsub
+declare source tsource
+declare source tsender_src
+declare source tsender_dest
+declare subscribe tsub
 EOF
 
 cd /usr/local/bin
