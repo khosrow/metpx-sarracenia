@@ -48,8 +48,8 @@ chmod 777 $file_origin/$sender_file
 function check_sender {
 
     #TODO check contents of file using diff
-        initial_dest=$file_origin/$sender_file
-        final_dest=$file_destination/$sender_file
+    initial_dest=$file_origin/$sender_file
+    final_dest=$file_destination/$sender_file
 
     if [ -f $final_dest ]; then
         diff $initial_dest $final_dest > /dev/null 2>&1
@@ -58,14 +58,14 @@ function check_sender {
         return 1
     fi        
 
-        if [ $? -eq 0 ]; then
-                rm $final_dest
-                return 0
-        else
-                echo "FAILED... difference in content"
-                rm $file_destination/$sender_file
-                return 1
-        fi
+    if [ $? -eq 0 ]; then
+        rm $final_dest
+        return 0
+    else
+        echo "FAILED... difference in content"
+        rm $file_destination/$sender_file
+        return 1
+    fi
 }
 
 #This test checks to see if sr_sender will send a file to a location
