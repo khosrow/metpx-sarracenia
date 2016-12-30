@@ -77,7 +77,7 @@ function test_post_doc {
     sr_sender  --reset ./sender/test1.conf start 
     sleep 3 
     
-    sr_post  -b amqp://$exchange:$credentials@$host/ \
+    sr_post --debug -b amqp://$exchange:$credentials@$host/ \
     -u sftp://$sender@$host/ \
     -p $file_origin/$sender_file \
     -to test_cluster  
