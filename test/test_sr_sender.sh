@@ -73,15 +73,15 @@ function check_sender {
 #post_exchange and post_broker are specified.
 function test_post_doc {
 
-    # sr_sender  --reset ./sender/test1.conf start > /dev/null 2>&1
-    sr_sender  --reset ./sender/test1.conf start 
+    sr_sender  --reset ./sender/test1.conf start > /dev/null 2>&1
     sleep 3 
+    
+    echo "Now posting message"
     
     sr_post --debug -b amqp://$exchange:$credentials@$host/ \
     -u sftp://$sender@$host/ \
     -p $file_origin/$sender_file \
     -to test_cluster  
-    
     #-to test_cluster  > /dev/null 2>&1
     
     sleep 3 
