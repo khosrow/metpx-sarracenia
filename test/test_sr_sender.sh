@@ -76,16 +76,11 @@ function test_post_doc {
     sr_sender  --reset ./sender/test1.conf start > /dev/null 2>&1
     sleep 3 
     
-    echo "------"
-    pip3 freeze
-    echo "Now posting message"
-    echo "------"
-    
-    sr_post --debug -b amqp://$exchange:$credentials@$host/ \
+    sr_post -b amqp://$exchange:$credentials@$host/ \
     -u sftp://$sender@$host/ \
     -p $file_origin/$sender_file \
-    -to test_cluster  
-    #-to test_cluster  > /dev/null 2>&1
+    # -to test_cluster  
+    -to test_cluster  > /dev/null 2>&1
     
     tail 
     
