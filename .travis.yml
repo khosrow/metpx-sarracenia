@@ -15,7 +15,6 @@ before_install:
     - cp ./test/sender/plugins/do_send_script.py ~/.config/sarra/plugins
     - cp ./test/sender/plugins/on_post_script.py ~/.config/sarra/plugins
 install: 
-    - pip3 install paramiko
     - python3 setup.py install
 before_script: 
     - sed -i -e "s/vagrant/travis/g" test/sender/*.conf
